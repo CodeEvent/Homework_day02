@@ -1,3 +1,7 @@
+from unicodedata import name
+from zoneinfo import available_timezones
+
+
 users = {
   "Jonathan": {
     "twitter": "jonnyt",
@@ -57,19 +61,39 @@ users = {
 # 1. Get Jonathan's Twitter handle (i.e. the string `"jonnyt"`)
 print(users['Jonathan']['twitter'])
 # 2. Get Erik's hometown
-print(users['Erik']['hometown'])
+print(users['Erik']['home_town'])
 # 3. Get the list of Erik's lottery numbers
 print(users['Erik']['lottery_numbers'])
 # 4. Get the species of Avril's pet Monty
-print(users['Avril']['pets']['species'])
+print(users['Avril']['pets'][0]['species'])
+
 # 5. Get the smallest of Erik's lottery numbers
+#Solution1
+eriks_numbers = users["Erik"]["lottery_numbers"] 
+print(min(eriks_numbers))
+
+#Solution2
+eriks_numbers.sort()
+print(eriks_numbers[0])
 
 # 6. Return an list of Avril's lottery numbers that are even
+avrils_numbers = users["Avril"]["lottery_numbers"]
 
+even_number=[]
+for number in avrils_numbers:
+  if number % 2 == 0:
+    even_number.append(number)
 
+print(even_number)
 
 # 7. Erik is one lottery number short! Add the number `7` to be included in his lottery numbers
+users["Erik"]["lottery_numbers"].append(7)
 
 # 8. Change Erik's hometown to Edinburgh
+users["Erik"]["home_town"] = "Edimburgh"
+
 # 9. Add a pet dog to Erik called "fluffy"
+users["Erik"]["pets"].append({"name":"fluffy", "species": "Dog"})
+
 # 10. Add another person to the users dictionary
+users["Sandy"] = {"twitter": "waspyfaeleiht", "pets": [{"name": "Lilly", "species": "Cat"}]}
